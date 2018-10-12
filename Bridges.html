@@ -26,7 +26,7 @@ const map = new mapboxgl.Map({
  map.on('load', function() {
       map.on('click', function(e) {
       var features = map.queryRenderedFeatures(e.point, {
-        layers: ['subbasin'] // replace this with the name of the layer
+        layers: ['bridges'] // replace this with the name of the layer
       });
       if (!features.length) {
         return;
@@ -39,11 +39,11 @@ const map = new mapboxgl.Map({
         .addTo(map);
       });
       // Change the cursor to a pointer when the mouse is over the popup layer.
-    map.on('mouseenter', 'subbasin', function () {
+    map.on('mouseenter', 'bridges', function () {
         map.getCanvas().style.cursor = 'pointer';
     });
     // Change it back to a pointer when it leaves.
-    map.on('mouseleave', 'subbasin', function () {
+    map.on('mouseleave', 'bridges', function () {
         map.getCanvas().style.cursor = '';
     });
     });
