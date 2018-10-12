@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='utf-8' />
+  <title>Display a map</title>
+  <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+  <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.49.0/mapbox-gl.js'></script>
+  <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.49.0/mapbox-gl.css' rel='stylesheet' />
+  <style>
+    body { margin:0; padding:0; }
+    #map { position:absolute; top:0; bottom:0; width:100%; }
+  </style>
+</head>
+<body>
+
+<div id='map'></div>
+<script>
+mapboxgl.accessToken = 'pk.eyJ1Ijoic3NoaTA4MDciLCJhIjoiY2pteTQ2bTd4MGhyYjNrbHJld2F0aXR3biJ9.YWaP_mUhc1UvcyZoRxQS4Q';
+const map = new mapboxgl.Map({
+  container: 'map',
+  style: 'mapbox://styles/sshi0807/cjn6awy9z14i22sqj8s8cvvxq',
+  center: [-120.623192, 37.548252],
+  zoom: 6.7
+});
+
+ map.on('load', function() {
+      map.on('click', function(e) {
+      var features = map.queryRenderedFeatures(e.point, {
+        layers: ['bridges'] // replace this with the name of the layer
+      });
+      if (!features.length) {
+        return;
+      }
+      var feature = features[0];
+      var popup = new mapboxgl.Popup({ offset: [0, -15] })
+        .setLngLat(feature.geometry.coordinates)
+        .setHTML('<h3>' + feature.properties.name + '</h3>')
+        .setLngLat(feature.geometry.coordinates)
+        .addTo(map);
+      });
+      // Change the cursor to a pointer when the mouse is over the popup layer.
+    map.on('mouseenter', 'bridges', function () {
+        map.getCanvas().style.cursor = 'pointer';
+    });
+    // Change it back to a pointer when it leaves.
+    map.on('mouseleave', 'bridges', function () {
+        map.getCanvas().style.cursor = '';
+    });
+    });
+
+</script>
+
+</body>
+</html>
