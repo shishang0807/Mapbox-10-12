@@ -39,11 +39,11 @@ const map = new mapboxgl.Map({
         .addTo(map);
       });
       // Change the cursor to a pointer when the mouse is over the popup layer.
-    map.on('mouseenter', 'bridges', function () {
+    map.on('mouseenter', 'subbasin', function () {
         map.getCanvas().style.cursor = 'pointer';
     });
     // Change it back to a pointer when it leaves.
-    map.on('mouseleave', 'bridges', function () {
+    map.on('mouseleave', 'subbasin', function () {
         map.getCanvas().style.cursor = '';
     });
     });
