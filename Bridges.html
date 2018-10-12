@@ -26,7 +26,7 @@ const map = new mapboxgl.Map({
  map.on('load', function() {
       map.on('click', function(e) {
       var features = map.queryRenderedFeatures(e.point, {
-        layers: ['bridges'] // replace this with the name of the layer
+        layers: ['subbasin'] // replace this with the name of the layer
       });
       if (!features.length) {
         return;
